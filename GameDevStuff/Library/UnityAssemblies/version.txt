@@ -1,0 +1,10 @@
+5.5.2f1:2.3.0.0
+StandaloneWindows
+C:/FoxStuff/Editor/Data/Managed/UnityEngine.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
+C:/FoxStuff/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll
+C:/FoxStuff/Editor/Data/Managed/UnityEditor.dll
