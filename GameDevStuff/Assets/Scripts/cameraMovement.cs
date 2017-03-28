@@ -90,21 +90,17 @@ public class cameraMovement : MonoBehaviour {
 		m_Camera.orthographicSize = FindRequiredSize ();
 	}*/
 
-    public GameObject car, player1, player2;
+    public GameObject car;
 
     private Vector3 offset;
 
     void Start()
     {
         offset = transform.position - car.transform.position;
-		offset = transform.position - player1.transform.position;
-		offset = transform.position - player2.transform.position;
     }
 
     void LateUpdate()
     {
         transform.position = car.transform.position + offset;
-		transform.position = player1.transform.position + offset;
-		transform.position = player2.transform.position + offset;
     }
 }

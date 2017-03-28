@@ -52,5 +52,16 @@ public class playerMovement : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("Door")) {
 			spriteR.enabled = false;
 		}
-	}
+        else if (other.gameObject.CompareTag("Wall"))
+        {
+            health = 0;
+            this.gameObject.SetActive(false);
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+
+    }
 }

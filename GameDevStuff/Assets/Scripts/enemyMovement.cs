@@ -22,8 +22,8 @@ public class enemyMovement : MonoBehaviour {
 		player2 = GameObject.FindGameObjectWithTag ("Player");
 
 		target1 = car.transform;
-		target2 = player1.transform;
-		target3 = player2.transform;
+		//target2 = player1.transform;
+		//target3 = player2.transform;
 	}
 
 	void Update () {
