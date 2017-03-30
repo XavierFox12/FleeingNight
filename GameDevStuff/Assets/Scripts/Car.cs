@@ -10,8 +10,10 @@ public class Car : MonoBehaviour {
     public Text loseText;
     public GameObject FrontShot;
 	public GameObject BackShot;
-	public GameObject Player1;
-	public GameObject Player2;
+	public static GameObject Player1;
+	public static GameObject Player2;
+    public GameObject Player1Prefab;
+    public GameObject Player2Prefab;
     public Transform ShotSpawn;
 	public Transform ShotSpawn2;
 	public Transform PlayerSpawn;
@@ -34,6 +36,13 @@ public class Car : MonoBehaviour {
 
     void Update()
     {
+        //Checks if the car's health is below 0
+        if (health <= 0)
+        {
+            this.gameObject.SetActive(false);
+            GameOver();
+        }
+
         //Fires the shot forward
         if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0)
         {
@@ -59,13 +68,11 @@ public class Car : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0)
 		{
             //Freezes the car and makes the two player appear
-            Player1.transform.position = new Vector2(PlayerSpawn.position.x, PlayerSpawn.position.y);
-            Player2.transform.position = new Vector2(PlayerSpawn2.position.x, PlayerSpawn2.position.y);
             //playerRenderer1.enabled = true;
            // playerRenderer2.enabled = true;
             rb2d.constraints = RigidbodyConstraints2D.FreezePosition;
-			Instantiate (Player1, PlayerSpawn.position, PlayerSpawn.rotation);
-			Instantiate (Player2, PlayerSpawn2.position, PlayerSpawn2.rotation);
+			Player1 = Instantiate (Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
+			Player2 = Instantiate (Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
 			playerCountStop++;
 		}
     }
@@ -98,16 +105,11 @@ public class Car : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
             --health;
-            if (health <= 0)
-            {
-                GameOver();
-            }
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
             this.gameObject.SetActive(false);
-            GameOver();
         }
         else if (other.gameObject.CompareTag("Finish"))
         {

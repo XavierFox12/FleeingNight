@@ -300,8 +300,10 @@ MonoBehaviour:
   loseText: {fileID: 0}
   FrontShot: {fileID: 1000013402019174, guid: bae3168790cd2bc419168d465c91fe63, type: 2}
   BackShot: {fileID: 1000013402019174, guid: fe3ca07fda7b5405fa2caa5a08ea3a1c, type: 2}
-  Player1: {fileID: 1000011340938496, guid: 706f36ee05b294a669faed0f05f4b343, type: 2}
-  Player2: {fileID: 1000011664326278, guid: ce6e6f67237b449cfa83081f0db8f1ba, type: 2}
+  Player1Prefab: {fileID: 1000011340938496, guid: 706f36ee05b294a669faed0f05f4b343,
+    type: 2}
+  Player2Prefab: {fileID: 1000011664326278, guid: ce6e6f67237b449cfa83081f0db8f1ba,
+    type: 2}
   ShotSpawn: {fileID: 4000011444347544}
   ShotSpawn2: {fileID: 4000011630987424}
   PlayerSpawn: {fileID: 4000011793760636}

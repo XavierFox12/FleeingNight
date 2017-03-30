@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target1: {fileID: 0}
-  target2: {fileID: 0}
-  target3: {fileID: 0}
+  target2: {fileID: 4000010371567460, guid: 706f36ee05b294a669faed0f05f4b343, type: 2}
+  target3: {fileID: 4000010669417658, guid: ce6e6f67237b449cfa83081f0db8f1ba, type: 2}
   moveSpeed: 5
   rotationSpeed: 5
 --- !u!212 &212479270241388096

@@ -5,7 +5,7 @@ public class playerMovement : MonoBehaviour {
 
     public int playerNumber = 1;
     public float speed = 12f;
-
+    public int health = 10;
     private string movementVertical;
     private string movementHorizontal;
     private Rigidbody2D rb;
@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour {
     private float movementInputHorizontal;
     private float movementInputVertical;
 	private int ammo = 10;
-	private int health = 10;
+	
 
     void Awake ()
     {
@@ -30,7 +30,11 @@ public class playerMovement : MonoBehaviour {
 	void Update () {
         movementInputHorizontal = Input.GetAxis(movementHorizontal);
         movementInputVertical = Input.GetAxis(movementVertical);
-	}
+        if (health < 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
     void FixedUpdate()
     {
@@ -62,6 +66,6 @@ public class playerMovement : MonoBehaviour {
 
     void GameOver()
     {
-
+        Debug.Log("Game Over");
     }
 }
