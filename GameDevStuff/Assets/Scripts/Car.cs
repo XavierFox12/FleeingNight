@@ -109,12 +109,24 @@ public class Car : MonoBehaviour {
             this.gameObject.SetActive(false);
             GameOver();
         }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            YouWin();
+        }
+    }
+
+    //Displays You Win when the player crosses the Finish Line
+    void YouWin()
+    {
+        Debug.Log("You Win");
+        //winText.text = "You Win";
     }
 
     //Displays Game Over when the player dies
     void GameOver()
     {
-        loseText.text = "Game Over";
+        Debug.Log("Game Over");
+        //loseText.text = "Game Over";
     }
 
     //Displays the amount of ammo the player has
