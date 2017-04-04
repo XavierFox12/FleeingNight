@@ -55,6 +55,7 @@ public class playerMovement : MonoBehaviour {
 			--health;
 		} else if (other.gameObject.CompareTag ("Door")) {
 			spriteR.enabled = false;
+            other.gameObject.GetComponent<Car>().CheckCar();
 		}
         else if (other.gameObject.CompareTag("Wall"))
         {

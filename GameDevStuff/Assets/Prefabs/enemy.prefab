@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4360489778103806}
   - component: {fileID: 212479270241388096}
   - component: {fileID: 50591521202644356}
-  - component: {fileID: 61348767599666794}
   - component: {fileID: 114795811233348316}
   m_Layer: 0
   m_Name: enemy
@@ -38,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1675394056997312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.5, y: 1.14, z: 0}
-  m_LocalScale: {x: 0.39017048, y: 0.5047401, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 30.379385}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,20 +62,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61348767599666794
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675394056997312}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 8.189999, y: 4.5999994}
 --- !u!114 &114795811233348316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +75,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target1: {fileID: 0}
   target2: {fileID: 4000010371567460, guid: 706f36ee05b294a669faed0f05f4b343, type: 2}
-  target3: {fileID: 4000010669417658, guid: ce6e6f67237b449cfa83081f0db8f1ba, type: 2}
   moveSpeed: 5
   rotationSpeed: 5
 --- !u!212 &212479270241388096
@@ -124,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5871a3f3693244d47b6d14004d01577d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6aafb1e61a710f4f847ff5134fff25a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
