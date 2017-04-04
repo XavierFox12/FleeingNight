@@ -4,6 +4,7 @@ using System.Collections;
 public class playerMovement : MonoBehaviour {
 
     public int playerNumber = 1;
+    public cameraMovement cameraScript;
     public float speed = 12f;
     public int health = 10;
     private string movementVertical;
@@ -54,8 +55,10 @@ public class playerMovement : MonoBehaviour {
 			other.gameObject.SetActive (false);
 			--health;
 		} else if (other.gameObject.CompareTag ("Door")) {
-			spriteR.enabled = false;
-            other.gameObject.GetComponent<Car>().CheckCar();
+            //spriteR.enabled = false;
+            other.transform.parent.GetComponent<Car>().CheckCar();
+            cameraScript.UnTrackPlayer(this.gameObject);
+            Destroy(this.gameObject);     
 		}
         else if (other.gameObject.CompareTag("Wall"))
         {

@@ -5,6 +5,7 @@ using System.Collections;
 public class Car : MonoBehaviour {
 
     public float speed;
+    public cameraMovement cameraScript;
     public Text countText;
     public Text winOrLoseText;
     public GameObject FrontShot;
@@ -61,20 +62,31 @@ public class Car : MonoBehaviour {
             SetAmmoText();
 		}
         //Destroys the player if Health is below 0
-        if (health <= 0)
+        /*if (health <= 0)
         {
             Destroy(this.gameObject);
             GameOver();
-        }
+        }*/
 
-		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0)
+		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0 || health <= 0)
 		{
             //Freezes the car and makes the two player appear
             //playerRenderer1.enabled = true;
-           // playerRenderer2.enabled = true;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            // playerRenderer2.enabled = true;
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
 			Player1 = Instantiate (Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
 			Player2 = Instantiate (Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
+            Player1.GetComponent<playerMovement>().cameraScript = cameraScript;
+            Player2.GetComponent<playerMovement>().cameraScript = cameraScript;
+            cameraScript.TrackPlayer(Player1);
+            cameraScript.TrackPlayer(Player2);
 			playerCountStop++;
             playersInCar = 0;
 		}
@@ -112,7 +124,6 @@ public class Car : MonoBehaviour {
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
-            //this.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Finish"))
         {
@@ -146,7 +157,7 @@ public class Car : MonoBehaviour {
         ++playersInCar;
         if (playersInCar >= 2)
         {
-            Debug.Log("HI");
+            Debug.Log("Players are in the Car");
             rb2d.constraints &= ~RigidbodyConstraints2D.FreezeAll;
             playerCountStop = 0;
         }

@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  speed: 12
+  cameraScript: {fileID: 0}
+  speed: 10
   health: 10
 --- !u!212 &212000012004254722
 SpriteRenderer:
