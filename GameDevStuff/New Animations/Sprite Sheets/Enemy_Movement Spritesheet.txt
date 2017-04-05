@@ -1,0 +1,12 @@
+enemymovement-(1)_0000_Layer-12 = 0 42 55 19
+enemymovement-(1)_0001_Layer-11 = 57 0 55 19
+enemymovement-(1)_0002_Layer-10 = 57 20 55 19
+enemymovement-(1)_0003_Layer-9 = 57 40 55 18
+enemymovement-(1)_0004_Layer-8 = 0 62 55 18
+enemymovement-(1)_0005_Layer-7 = 0 81 55 18
+enemymovement-(1)_0006_Layer-6 = 0 0 56 20
+enemymovement-(1)_0007_Layer-5 = 0 21 56 20
+enemymovement-(1)_0008_Layer-4 = 0 100 54 20
+enemymovement-(1)_0009_Layer-3 = 56 59 54 20
+enemymovement-(1)_0010_Layer-2 = 56 80 54 20
+enemymovement-(1)_0011_Layer-1 = 55 101 54 20
