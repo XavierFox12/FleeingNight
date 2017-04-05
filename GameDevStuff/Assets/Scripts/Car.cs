@@ -5,7 +5,9 @@ using System.Collections;
 public class Car : MonoBehaviour {
 
     public float speed;
+    public Slider healthSlider;
     public cameraMovement cameraScript;
+    public RandomGeneration generationScript;
     public Text countText;
     public Text winOrLoseText;
     public GameObject FrontShot;
@@ -26,6 +28,7 @@ public class Car : MonoBehaviour {
     private int playersInCar;
     private float nextFire;
     private int ammo = 10;
+    private int tmpAmmo;
     private Rigidbody2D rb2d;
 	private RigidbodyConstraints2D constraints;
 
@@ -40,11 +43,11 @@ public class Car : MonoBehaviour {
     void Update()
     {
         //Checks if the car's health is below 0
-        if (health <= 0)
+        /*if (health <= 0)
         {
             this.gameObject.SetActive(false);
             GameOver();
-        }
+        }*/
 
         //Fires the shot forward
         if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0)
@@ -70,25 +73,7 @@ public class Car : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0 || health <= 0)
 		{
-            //Freezes the car and makes the two player appear
-            //playerRenderer1.enabled = true;
-            // playerRenderer2.enabled = true;
-            if (health <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
-			Player1 = Instantiate (Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
-			Player2 = Instantiate (Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
-            Player1.GetComponent<playerMovement>().cameraScript = cameraScript;
-            Player2.GetComponent<playerMovement>().cameraScript = cameraScript;
-            cameraScript.TrackPlayer(Player1);
-            cameraScript.TrackPlayer(Player2);
-			playerCountStop++;
-            playersInCar = 0;
+            ExitCar();
 		}
     }
 
@@ -100,6 +85,7 @@ public class Car : MonoBehaviour {
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        //transform.rotation = Quaternion.LookRotation(movement);
 
         rb2d.velocity = movement * speed;
 	}
@@ -118,16 +104,25 @@ public class Car : MonoBehaviour {
         }*/
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
             --health;
+            healthSlider.value = health;
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
+            ExitCar();
+            healthSlider.value = health;
+            Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Finish"))
         {
             YouWin();
+        }
+        else if (other.gameObject.CompareTag("Generation"))
+        {
+            generationScript.FieldGeneration();
         }
     }
 
@@ -136,13 +131,6 @@ public class Car : MonoBehaviour {
     {
         Debug.Log("You Win");
         winOrLoseText.text = "You Win";
-    }
-
-    //Displays Game Over when the player dies
-    void GameOver()
-    {
-        Debug.Log("Game Over");
-        winOrLoseText.text = "Game Over";
     }
 
     //Displays the amount of ammo the player has
@@ -158,8 +146,29 @@ public class Car : MonoBehaviour {
         if (playersInCar >= 2)
         {
             Debug.Log("Players are in the Car");
+            cameraScript.TrackCar(this.gameObject);
             rb2d.constraints &= ~RigidbodyConstraints2D.FreezeAll;
             playerCountStop = 0;
+            ammo = tmpAmmo;
         }
+    }
+
+    void ExitCar()
+    {
+        //Freezes the car and makes the two player appear
+        //playerRenderer1.enabled = true;
+        // playerRenderer2.enabled = true;
+        tmpAmmo = ammo;
+        ammo = 0;
+        Player1 = Instantiate(Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
+        Player2 = Instantiate(Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
+        Player1.GetComponent<playerMovement>().cameraScript = cameraScript;
+        Player2.GetComponent<playerMovement>().cameraScript = cameraScript;
+        cameraScript.UnTrackCar(this.gameObject);
+        cameraScript.TrackPlayer(Player1);
+        cameraScript.TrackPlayer(Player2);
+        playerCountStop++;
+        playersInCar = 0;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

@@ -1,18 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour {
 
     public int playerNumber = 1;
+    public GameObject shot;
+    public Transform shotSpawn;
+    public Slider healthSlider;
+    public Text winText;
     public cameraMovement cameraScript;
+    public GameManager gameManagerScript;
     public float speed = 12f;
     public int health = 10;
     private string movementVertical;
     private string movementHorizontal;
+    private string fire;
     private Rigidbody2D rb;
 	private SpriteRenderer spriteR;
     private float movementInputHorizontal;
     private float movementInputVertical;
+    private float nextFire;
+    private float fireRate;
 	private int ammo = 10;
 	
 
@@ -20,27 +29,42 @@ public class playerMovement : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
 		spriteR = GetComponent<SpriteRenderer> ();
+        gameManagerScript = GetComponent<GameManager>();
+        healthSlider = GetComponent<Slider>();
     }
 
 	void Start () {
         movementHorizontal = "Horizontal" + playerNumber;
         movementVertical = "Vertical" + playerNumber;
+        fire = "Fire" + playerNumber;
 		rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //winText.text = "";
+        fireRate = .25f;
 	}
 	
 	void Update () {
         movementInputHorizontal = Input.GetAxis(movementHorizontal);
         movementInputVertical = Input.GetAxis(movementVertical);
+
+        if (Input.GetButton(fire) && Time.time > nextFire && ammo > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+
         if (health < 0)
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 
     void FixedUpdate()
     {
         Vector2 movement = new Vector2(movementInputHorizontal, movementInputVertical);
-
+        //transform.rotation = Quaternion.LookRotation(movement);
         rb.velocity = movement * speed;
     }
 
@@ -54,6 +78,7 @@ public class playerMovement : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("Enemy")) {
 			other.gameObject.SetActive (false);
 			--health;
+            healthSlider.value = health;
 		} else if (other.gameObject.CompareTag ("Door")) {
             //spriteR.enabled = false;
             other.transform.parent.GetComponent<Car>().CheckCar();
@@ -63,13 +88,21 @@ public class playerMovement : MonoBehaviour {
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
-            this.gameObject.SetActive(false);
-            GameOver();
+            //gameManagerScript.PlayerDeathCount();
+            healthSlider.value = health;
+            cameraScript.UnTrackPlayer(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            YouWin();
         }
     }
 
-    void GameOver()
+    //Displays You Win when the player crosses the Finish Line
+    void YouWin()
     {
-        Debug.Log("Game Over");
+        Debug.Log("You Win");
+        winText.text = "You Win";
     }
 }
