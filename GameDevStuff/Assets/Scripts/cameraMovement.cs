@@ -43,21 +43,6 @@ public class cameraMovement : MonoBehaviour {
         Debug.Log(string.Join("\n", m_Targets.Select(x => x.ToString()).ToArray()));
     }
 
-    public void TrackCar(GameObject objects)
-    {
-        m_Targets.Add(objects.transform);
-
-        Debug.Log(string.Join("\n", m_Targets.Select(x => x.ToString()).ToArray()));
-    }
-
-    public void UnTrackCar(GameObject objects)
-    {
-        if (m_Targets.Contains(objects.transform))
-        {
-            m_Targets.Remove(objects.transform);
-        }
-    }
-
     private void FixedUpdate()
 	{
 		Move ();
