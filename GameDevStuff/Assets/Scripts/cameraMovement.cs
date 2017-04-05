@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
 public class cameraMovement : MonoBehaviour {
 	/*********************************************************
@@ -7,23 +9,41 @@ public class cameraMovement : MonoBehaviour {
 	 * tanks tutorial on how to move the camera with the
 	 * player.
 	 * ******************************************************/
-	/*public float m_DampTime = 0.2f;
+	public float m_DampTime = 0.2f;
 	public float m_ScreenEdgeBuffer = 4f;
 	public float m_MinSize = 6.5f;
-	[HideInInspector] public Transform[] m_Targets;
+	[HideInInspector] public HashSet<Transform> m_Targets;
 
 	private Camera m_Camera;
 	private float m_ZoomSpeed;
 	private Vector3 mZoomSpeed;
 	private Vector3 m_MoveVelocity;
 	private Vector3 m_DesiredPosition;
+    public GameObject car;
 
-	private void Awake()
-	{
-		m_Camera = GetComponentInChildren<Camera> ();
+    private void Awake()
+    {
+        m_Camera = GetComponentInChildren<Camera>();
+        m_Targets = new HashSet<Transform> { car.transform };
 	}
 
-	private void FixedUpdate()
+    public void TrackPlayer(GameObject objects)
+    {
+            m_Targets.Add(objects.transform);
+
+        Debug.Log(string.Join("\n", m_Targets.Select(x => x.ToString()).ToArray()));
+    }
+
+    public void UnTrackPlayer(GameObject objects)
+    {
+           if( m_Targets.Contains(objects.transform))
+            {
+                m_Targets.Remove(objects.transform);
+            }
+        Debug.Log(string.Join("\n", m_Targets.Select(x => x.ToString()).ToArray()));
+    }
+
+    private void FixedUpdate()
 	{
 		Move ();
 		Zoom ();
@@ -40,18 +60,19 @@ public class cameraMovement : MonoBehaviour {
 		Vector3 averagePos = new Vector3 ();
 		int numTargets = 0;
 
-		for (int i = 0; i < m_Targets.Length; i++) {
-			if (!m_Targets [i].gameObject.activeSelf)
+        foreach (Transform trs in m_Targets)
+        {
+			if (!trs.gameObject.activeSelf)
 				continue;
 
-			averagePos += m_Targets [i].position;
+			averagePos += trs.position;
 			numTargets++;
 		}
 
 		if (numTargets > 0)
 			averagePos /= numTargets;
 
-		averagePos.y = transform.position.y;
+		averagePos.z = transform.position.z;
 
 		m_DesiredPosition = averagePos;
 	}
@@ -67,11 +88,11 @@ public class cameraMovement : MonoBehaviour {
 		Vector3 desiredLocalPos = transform.InverseTransformPoint (m_DesiredPosition);
 		float size = 0f;
 
-		for (int i = 0; i < m_Targets.Length; i++) {
-			if (!m_Targets [i].gameObject.activeSelf)
+		foreach (Transform trs in m_Targets) {
+			if (!trs.gameObject.activeSelf)
 				continue;
 
-			Vector3 targetLocalPos = transform.InverseTransformPoint (m_Targets [i].position);
+			Vector3 targetLocalPos = transform.InverseTransformPoint (trs.position);
 			Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
 
 			size = Mathf.Max (size, Mathf.Abs (desiredPosToTarget.y));
@@ -88,19 +109,17 @@ public class cameraMovement : MonoBehaviour {
 		FindAveragePosition ();
 		transform.position = m_DesiredPosition;
 		m_Camera.orthographicSize = FindRequiredSize ();
-	}*/
+	}
 
-    public GameObject car;
+    //private Vector3 offset;
 
-    private Vector3 offset;
+    //void Start()
+    //{
+    //    offset = transform.position - car.transform.position;
+    //}
 
-    void Start()
-    {
-        offset = transform.position - car.transform.position;
-    }
-
-    void LateUpdate()
-    {
-        transform.position = car.transform.position + offset;
-    }
+    //void LateUpdate()
+    //{
+    //    transform.position = car.transform.position + offset;
+    //}
 }
