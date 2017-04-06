@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameOverText = gameOverText.GetComponent<Text>();
         playerDeathCount = 0;
+        gameOverText.text = "";
         StartCoroutine(SpawnEnemies());
     }
 
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         ++playerDeathCount;
         if (playerDeathCount >= 2)
         {
+            Debug.Log("HII");
             GameOver();
         }
     }

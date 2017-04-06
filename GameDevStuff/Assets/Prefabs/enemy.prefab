@@ -137,8 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7062c7ea78d1d47a8db678e5ef2d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target1: {fileID: 0}
+  target1: {fileID: 4000013565791872, guid: 6a0a04c1176bef34984b9ddc7b0d4670, type: 2}
   target2: {fileID: 4000010371567460, guid: 706f36ee05b294a669faed0f05f4b343, type: 2}
+  target3: {fileID: 4000010669417658, guid: ce6e6f67237b449cfa83081f0db8f1ba, type: 2}
   moveSpeed: 9
   rotationSpeed: 5
 --- !u!212 &212479270241388096

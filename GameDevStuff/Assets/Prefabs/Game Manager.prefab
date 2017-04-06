@@ -109,7 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3a5e95bcc0d0c48bccefa8fda8f31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverText: {fileID: 0}
+  gameOverText: {fileID: 114582240425244410, guid: 08197c251879216459c6cf0c62e8d772,
+    type: 2}
+  carHealth: {fileID: 114861410755409390, guid: 78275d1882b94c247ae81c679d5b87f5,
+    type: 2}
+  player1Health: {fileID: 114743445434191282, guid: cdd8b44dfa8e13f4c9c7ab0be4a41a58,
+    type: 2}
+  player2Health: {fileID: 114591927125611206, guid: 97de72b8888782e4e91edabd1404c473,
+    type: 2}
   enemy: {fileID: 1675394056997312, guid: 3f44b6fb0287d1c43a84207978dcca6e, type: 2}
   enemySpawn1: {fileID: 4472818831133170}
   enemySpawn2: {fileID: 4136165374104548}

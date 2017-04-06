@@ -30,15 +30,18 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteR = GetComponent<SpriteRenderer>();
+        winText = winText.GetComponent<Text>();
     }
 
     void Start()
     {
+        health = 10;
+        healthSlider.value = health;
         movementHorizontal = "Horizontal" + playerNumber;
         movementVertical = "Vertical" + playerNumber;
         fire = "Fire" + playerNumber;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        //winText.text = "";
+        winText.text = "";
         fireRate = .25f;
     }
 

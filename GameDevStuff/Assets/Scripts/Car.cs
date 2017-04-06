@@ -41,13 +41,6 @@ public class Car : MonoBehaviour {
 
     void Update()
     {
-        //Checks if the car's health is below 0
-        /*if (health <= 0)
-        {
-            this.gameObject.SetActive(false);
-            GameOver();
-        }*/
-
         //Fires the shot forward
         if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0)
         {
