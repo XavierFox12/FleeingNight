@@ -779,8 +779,8 @@ MonoBehaviour:
   ShotSpawn2: {fileID: 4000011630987424}
   PlayerSpawn: {fileID: 4000011793760636}
   PlayerSpawn2: {fileID: 4000012388203074}
-  health: 10
-  fireRate: 0.25
+  health: 20
+  fireRate: 0.5
 --- !u!212 &212000010452426230
 SpriteRenderer:
   m_ObjectHideFlags: 1

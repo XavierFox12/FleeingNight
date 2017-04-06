@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class Car : MonoBehaviour {
 	public Transform PlayerSpawn2;
     //public SpriteRenderer playerRenderer1;
     //public SpriteRenderer playerRenderer2;
-    public int health = 10;
+    public int health = 20;
     public float fireRate;
 	private int playerCountStop;
     private int playersInCar;
@@ -120,6 +121,7 @@ public class Car : MonoBehaviour {
     {
         Debug.Log("You Win");
         winOrLoseText.text = "You Win";
+        SceneManager.LoadScene("titleScreen");
     }
 
     //Displays Game Over when the player dies
@@ -144,6 +146,7 @@ public class Car : MonoBehaviour {
             Debug.Log("Players are in the Car");
             cameraScript.TrackCar(this.gameObject);
             rb2d.constraints &= ~RigidbodyConstraints2D.FreezeAll;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
             playerCountStop = 0;
             ammo = tmpAmmo;
         }

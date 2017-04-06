@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class playerMovement : MonoBehaviour
     public Text winText;
     public cameraMovement cameraScript;
     public GameManager gameManagerScript;
-    public float speed = 12f;
+    public float speed = 10f;
     public int health = 10;
     private string fire;
     private string movementVertical;
@@ -31,18 +32,20 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteR = GetComponent<SpriteRenderer>();
         winText = winText.GetComponent<Text>();
+        movementHorizontal = "Horizontal" + playerNumber;
+        movementVertical = "Vertical" + playerNumber;
+        fire = "Fire" + playerNumber;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        winText.text = "";
+        fireRate = .5f;
     }
 
     void Start()
     {
         health = 10;
         healthSlider.value = health;
-        movementHorizontal = "Horizontal" + playerNumber;
-        movementVertical = "Vertical" + playerNumber;
-        fire = "Fire" + playerNumber;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        winText.text = "";
-        fireRate = .25f;
+        
+        //fireRate = .5f;
     }
 
     void Update()
@@ -115,6 +118,7 @@ public class playerMovement : MonoBehaviour
     void YouWin()
     {
         Debug.Log("You Win");
-        winText.text = "You Win";
+        SceneManager.LoadScene("titleScreen");
+        //winText.text = "You Win";
     }
 }

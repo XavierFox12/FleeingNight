@@ -131,8 +131,7 @@ MonoBehaviour:
   playerNumber: 2
   shot: {fileID: 1000013402019174, guid: bae3168790cd2bc419168d465c91fe63, type: 2}
   shotSpawn: {fileID: 4180922857195516}
-  healthSlider: {fileID: 114591927125611206, guid: 97de72b8888782e4e91edabd1404c473,
-    type: 2}
+  healthSlider: {fileID: 0}
   winText: {fileID: 114582240425244410, guid: 08197c251879216459c6cf0c62e8d772, type: 2}
   cameraScript: {fileID: 0}
   gameManagerScript: {fileID: 114332369606004188, guid: 57bbcb1b86dc739428fd8f0423f93435,
