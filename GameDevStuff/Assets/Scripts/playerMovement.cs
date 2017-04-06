@@ -1,39 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class playerMovement : MonoBehaviour {
+public class playerMovement : MonoBehaviour
+{
 
     public int playerNumber = 1;
+    public GameObject shot;
+    public Transform shotSpawn;
+    public Slider healthSlider;
+    public Text winText;
     public cameraMovement cameraScript;
+    public GameManager gameManagerScript;
     public float speed = 12f;
     public int health = 10;
+    private string fire;
     private string movementVertical;
     private string movementHorizontal;
     private Rigidbody2D rb;
-	private SpriteRenderer spriteR;
+    private SpriteRenderer spriteR;
     private float movementInputHorizontal;
     private float movementInputVertical;
-	private int ammo = 10;
-	
+    private float nextFire;
+    private float fireRate;
+    private int ammo = 1000;
 
-    void Awake ()
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-		spriteR = GetComponent<SpriteRenderer> ();
+        spriteR = GetComponent<SpriteRenderer>();
     }
 
-	void Start () {
+    void Start()
+    {
         movementHorizontal = "Horizontal" + playerNumber;
         movementVertical = "Vertical" + playerNumber;
-		rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-	}
-	
-	void Update () {
+        fire = "Fire" + playerNumber;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //winText.text = "";
+        fireRate = .25f;
+    }
+
+    void Update()
+    {
         movementInputHorizontal = Input.GetAxis(movementHorizontal);
         movementInputVertical = Input.GetAxis(movementVertical);
+
+        if (Input.GetButton(fire) && Time.time > nextFire && ammo > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+
         if (health < 0)
         {
-            this.gameObject.SetActive(false);
+            gameManagerScript.PlayerDeathCount();
+            healthSlider.value = health;
+            cameraScript.UnTrackPlayer(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -44,32 +71,47 @@ public class playerMovement : MonoBehaviour {
         rb.velocity = movement * speed;
     }
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.CompareTag ("Ammo")) {
-			other.gameObject.SetActive (false);
-			ammo += 10;
-		} else if (other.gameObject.CompareTag ("Part")) {
-			other.gameObject.SetActive (false);
-		} else if (other.gameObject.CompareTag ("Enemy")) {
-			other.gameObject.SetActive (false);
-			--health;
-		} else if (other.gameObject.CompareTag ("Door")) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ammo"))
+        {
+            other.gameObject.SetActive(false);
+            ammo += 10;
+        }
+        else if (other.gameObject.CompareTag("Part"))
+        {
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.SetActive(false);
+            --health;
+            healthSlider.value = health;
+        }
+        else if (other.gameObject.CompareTag("Door"))
+        {
             //spriteR.enabled = false;
             other.transform.parent.GetComponent<Car>().CheckCar();
             cameraScript.UnTrackPlayer(this.gameObject);
-            Destroy(this.gameObject);     
-		}
+            Destroy(this.gameObject);
+        }
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
-            this.gameObject.SetActive(false);
-            GameOver();
+            gameManagerScript.PlayerDeathCount();
+            healthSlider.value = health;
+            cameraScript.UnTrackPlayer(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            YouWin();
         }
     }
 
-    void GameOver()
+    void YouWin()
     {
-        Debug.Log("Game Over");
+        Debug.Log("You Win");
+        winText.text = "You Win";
     }
 }

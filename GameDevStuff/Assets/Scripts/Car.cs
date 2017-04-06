@@ -5,6 +5,7 @@ using System.Collections;
 public class Car : MonoBehaviour {
 
     public float speed;
+    public Slider healthSlider;
     public cameraMovement cameraScript;
     public Text countText;
     public Text winOrLoseText;
@@ -25,7 +26,8 @@ public class Car : MonoBehaviour {
 	private int playerCountStop;
     private int playersInCar;
     private float nextFire;
-    private int ammo = 10;
+    private int ammo = 1000;
+    private int tmpAmmo;
     private Rigidbody2D rb2d;
 	private RigidbodyConstraints2D constraints;
 
@@ -40,11 +42,11 @@ public class Car : MonoBehaviour {
     void Update()
     {
         //Checks if the car's health is below 0
-        if (health <= 0)
+        /*if (health <= 0)
         {
             this.gameObject.SetActive(false);
             GameOver();
-        }
+        }*/
 
         //Fires the shot forward
         if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0)
@@ -52,14 +54,14 @@ public class Car : MonoBehaviour {
             nextFire = Time.time + fireRate;
             Instantiate(FrontShot, ShotSpawn.position, ShotSpawn.rotation);
             --ammo;
-            SetAmmoText();
+            //SetAmmoText();
         }
         //Fires the shot backwards
 		if (Input.GetButton ("Fire3") && Time.time > nextFire && ammo > 0) {
 			nextFire = Time.time + fireRate;
 			Instantiate (BackShot, ShotSpawn2.position, ShotSpawn2.rotation);
 			--ammo;
-            SetAmmoText();
+            //SetAmmoText();
 		}
         //Destroys the player if Health is below 0
         /*if (health <= 0)
@@ -68,27 +70,9 @@ public class Car : MonoBehaviour {
             GameOver();
         }*/
 
-		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0 || health <= 0)
+		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0 || health <= 0 && playerCountStop == 0)
 		{
-            //Freezes the car and makes the two player appear
-            //playerRenderer1.enabled = true;
-            // playerRenderer2.enabled = true;
-            if (health <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
-			Player1 = Instantiate (Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
-			Player2 = Instantiate (Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
-            Player1.GetComponent<playerMovement>().cameraScript = cameraScript;
-            Player2.GetComponent<playerMovement>().cameraScript = cameraScript;
-            cameraScript.TrackPlayer(Player1);
-            cameraScript.TrackPlayer(Player2);
-			playerCountStop++;
-            playersInCar = 0;
+            ExitCar();
 		}
     }
 
@@ -110,7 +94,7 @@ public class Car : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
             ammo += 10;
-            SetAmmoText();
+            //SetAmmoText();
         }
         /*else if (other.gameObject.CompareTag("Part"))
         {
@@ -118,12 +102,19 @@ public class Car : MonoBehaviour {
         }*/
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
             --health;
+            healthSlider.value = health;
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
+            if (playerCountStop == 0)
+            {
+                ExitCar();
+            }
+            healthSlider.value = health;
+            Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Finish"))
         {
@@ -139,17 +130,17 @@ public class Car : MonoBehaviour {
     }
 
     //Displays Game Over when the player dies
-    void GameOver()
+    /*void GameOver()
     {
         Debug.Log("Game Over");
         winOrLoseText.text = "Game Over";
-    }
+    }*/
 
     //Displays the amount of ammo the player has
-    void SetAmmoText()
+   /* void SetAmmoText()
     {
         countText.text = "Ammo: " + ammo.ToString();
-    }
+    }*/
 
     //Checks to see if both the players are in the car
     public void CheckCar()
@@ -158,8 +149,29 @@ public class Car : MonoBehaviour {
         if (playersInCar >= 2)
         {
             Debug.Log("Players are in the Car");
+            cameraScript.TrackCar(this.gameObject);
             rb2d.constraints &= ~RigidbodyConstraints2D.FreezeAll;
             playerCountStop = 0;
+            ammo = tmpAmmo;
         }
+    }
+
+    public void ExitCar()
+    {
+        //Freezes the car and makes the two player appear
+        //playerRenderer1.enabled = true;
+        // playerRenderer2.enabled = true;
+        tmpAmmo = ammo;
+        ammo = 0;
+        Player1 = Instantiate(Player1Prefab, PlayerSpawn.position, PlayerSpawn.rotation);
+        Player2 = Instantiate(Player2Prefab, PlayerSpawn2.position, PlayerSpawn2.rotation);
+        Player1.GetComponent<playerMovement>().cameraScript = cameraScript;
+        Player2.GetComponent<playerMovement>().cameraScript = cameraScript;
+        cameraScript.UnTrackCar(this.gameObject);
+        cameraScript.TrackPlayer(Player1);
+        cameraScript.TrackPlayer(Player2);
+        playerCountStop++;
+        playersInCar = 0;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }
