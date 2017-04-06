@@ -21,7 +21,12 @@ public class moveShot : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Cacti"))
+        {
+            Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
     }
