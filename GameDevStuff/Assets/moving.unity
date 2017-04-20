@@ -46594,7 +46594,7 @@ RectTransform:
   - {fileID: 462997130}
   - {fileID: 823304792}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -73194,7 +73194,7 @@ MonoBehaviour:
   ShotSpawn2: {fileID: 337298194}
   PlayerSpawn: {fileID: 1110251618}
   PlayerSpawn2: {fileID: 1521030222}
-  health: 20
+  health: 5
   fireRate: 0.5
 --- !u!212 &1379670411
 SpriteRenderer:
