@@ -6,12 +6,13 @@ TagManager:
   tags:
   - Collect
   - Ammo
-  - Part
   - Enemy
   - Door
   - Wall
   - Car
   - Cacti
+  - Gas
+  - Scrap
   layers:
   - Default
   - TransparentFX

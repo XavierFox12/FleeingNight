@@ -73180,6 +73180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  gas: 30
   healthSlider: {fileID: 0}
   cameraScript: {fileID: 1226163002}
   countText: {fileID: 0}
