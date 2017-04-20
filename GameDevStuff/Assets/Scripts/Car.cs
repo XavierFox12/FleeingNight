@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Car : MonoBehaviour {
 
     public float speed;
+    public float gas;
     public Slider healthSlider;
     public cameraMovement cameraScript;
     public Text countText;
@@ -64,10 +65,14 @@ public class Car : MonoBehaviour {
             GameOver();
         }*/
 
-		if (Input.GetKeyDown(KeyCode.Space) && playerCountStop == 0 || health <= 0 && playerCountStop == 0)
+		if ((Input.GetKeyDown(KeyCode.Space) || health <= 0 || gas <= 0) && playerCountStop == 0)
 		{
             ExitCar();
 		}
+        else
+        {
+            gas -= Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
