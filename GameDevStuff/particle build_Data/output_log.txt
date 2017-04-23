@@ -22,7 +22,7 @@ desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.006447 ms
+UnloadTime: 1.004101 ms
 False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -36,8 +36,29 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 NullReferenceException: Object reference not set to an instance of an object
-  at GameManager.Start () [0x00000] in <filename unknown>:0 
+  at enemyMovement.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at enemyMovement.Start () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
@@ -85,29 +106,8 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
-False
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
 NullReferenceException: Object reference not set to an instance of an object
-  at enemyMovement.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-False
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at enemyMovement.Start () [0x00000] in <filename unknown>:0 
+  at GameManager.Start () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
@@ -151,5 +151,5 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: cef8 -> priority: 1 
-  Thread -> id: c69c -> priority: 1 
+  Thread -> id: 8840 -> priority: 1 
+  Thread -> id: d470 -> priority: 1 
