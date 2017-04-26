@@ -28,5 +28,10 @@ public class moveBackShot : MonoBehaviour {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
-	}
+        else if (other.gameObject.CompareTag("Breakable"))
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }

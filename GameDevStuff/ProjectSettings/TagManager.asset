@@ -13,6 +13,7 @@ TagManager:
   - Cacti
   - Gas
   - Scrap
+  - Breakable
   layers:
   - Default
   - TransparentFX
