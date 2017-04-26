@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(SpawnEnemies());
         gameOverText = gameOverText.GetComponent<Text>();
         playerDeathCount = 0;
         gameOverText.text = "";
-        StartCoroutine(SpawnEnemies());
+        //StartCoroutine(SpawnEnemies());
     }
 
     void Update()
