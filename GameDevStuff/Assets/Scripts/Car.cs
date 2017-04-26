@@ -8,6 +8,7 @@ public class Car : MonoBehaviour
 
     public float speed;
     public float gas;
+    public Animator animator;
     public Slider healthSlider;
     public cameraMovement cameraScript;
     public Text countText;

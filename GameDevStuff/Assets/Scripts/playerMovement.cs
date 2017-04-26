@@ -16,7 +16,8 @@ public class playerMovement : MonoBehaviour
     public Car carScript;                       // The car script that will be called if the player picks up scrap or gas
     public float speed = 10f;                   // Controls the speed of the player
     public int health = 10;                     // Controls the health of the player
-    public Animator animator;                   // Controls the animator for the player
+    public Animator animator;                   // Controls the animator for the player movements
+    public Animator gunAnimator;                // Controls the animator for the players guns
     private string fire;                        // Determines if the player shooting is 1 or 2
     private string movementVertical;            // Allows the player to move vertically
     private string movementHorizontal;          // Allows the player to move horizontally
@@ -91,6 +92,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", true);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", true);
+            gunAnimator.SetBool("gunIdle", false);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && playerNumber == 2)
         {
@@ -98,6 +102,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", true);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", true);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", false);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && playerNumber == 2)
         {
@@ -105,6 +112,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", true);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && playerNumber == 2)
         {
@@ -112,6 +122,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", true);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", true);
         }
         else if (Input.GetKeyDown(KeyCode.D) && playerNumber == 1)
         {
@@ -119,6 +132,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", true);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", true);
+            gunAnimator.SetBool("gunIdle", false);
         }
         else if (Input.GetKeyDown(KeyCode.A) && playerNumber == 1)
         {
@@ -126,6 +142,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", true);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", true);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", false);
         }
         else if (Input.GetKeyDown(KeyCode.W) && playerNumber == 1)
         {
@@ -133,6 +152,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", false);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", true);
         }
         else if (Input.GetKeyDown(KeyCode.S) && playerNumber == 1)
         {
@@ -140,6 +162,9 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("turnFront", true);
             animator.SetBool("turnLeft", false);
             animator.SetBool("turnRight", false);
+            gunAnimator.SetBool("gunLeft", false);
+            gunAnimator.SetBool("gunRight", false);
+            gunAnimator.SetBool("gunIdle", true);
         }
     }
 
