@@ -26,6 +26,7 @@ public class playerMovement : MonoBehaviour
     private float nextFire;                     // Determines how long the player has to wait before they can shoot again
     private float fireRate;                     // Determines the fire rate of the players
     private int ammo = 1000;                    // Controls the amount of ammo the player has
+    private int inventory;                      // Controls what is in the players inventory
 
 
     void Awake()
@@ -45,7 +46,7 @@ public class playerMovement : MonoBehaviour
     {
         health = 10;
         healthSlider.value = health;
-        
+
         //fireRate = .5f;
     }
 
@@ -69,6 +70,19 @@ public class playerMovement : MonoBehaviour
             cameraScript.UnTrackPlayer(this.gameObject);
             Destroy(this.gameObject);
         }
+
+        if ((Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.E)) && inventory > 0)
+        {
+            carScript.AddHealth();
+            --inventory;
+        }
+
+        if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Q)) && inventory > 0)
+        {
+            ammo += 10;
+            --inventory;
+            Debug.Log(ammo);
+        }
     }
 
     void FixedUpdate()
@@ -85,13 +99,15 @@ public class playerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             ammo += 10;
         }
-        else if (other.gameObject.CompareTag("Part"))
+        else if (other.gameObject.CompareTag("Scrap"))
         {
             other.gameObject.SetActive(false);
+            ++inventory;
+            Debug.Log("scrap +1");
         }
-        else if(other.gameObject.CompareTag("Gas"))
+        else if (other.gameObject.CompareTag("Gas"))
         {
-            carScript.gas += 10f;
+            carScript.AddGas();
             other.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Enemy"))

@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Car : MonoBehaviour {
+public class Car : MonoBehaviour
+{
 
     public float speed;
     public float gas;
@@ -12,26 +13,26 @@ public class Car : MonoBehaviour {
     public Text countText;
     public Text winOrLoseText;
     public GameObject FrontShot;
-	public GameObject BackShot;
-	public static GameObject Player1;
-	public static GameObject Player2;
+    public GameObject BackShot;
+    public static GameObject Player1;
+    public static GameObject Player2;
     public GameObject Player1Prefab;
     public GameObject Player2Prefab;
     public Transform ShotSpawn;
-	public Transform ShotSpawn2;
-	public Transform PlayerSpawn;
-	public Transform PlayerSpawn2;
+    public Transform ShotSpawn2;
+    public Transform PlayerSpawn;
+    public Transform PlayerSpawn2;
     //public SpriteRenderer playerRenderer1;
     //public SpriteRenderer playerRenderer2;
-    public int health = 20;
+    public int health;
     public float fireRate;
-	private int playerCountStop;
+    private int playerCountStop;
     private int playersInCar;
     private float nextFire;
     private int ammo = 1000;
     private int tmpAmmo;
     private Rigidbody2D rb2d;
-	private RigidbodyConstraints2D constraints;
+    private RigidbodyConstraints2D constraints;
 
     void Start()
     {
@@ -43,8 +44,9 @@ public class Car : MonoBehaviour {
 
     void Update()
     {
+        Debug.Log(playersInCar);
         //Fires the shot forward
-        if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0)
+        if (Input.GetButton("Fire1") && Time.time > nextFire && ammo > 0)
         {
             nextFire = Time.time + fireRate;
             Instantiate(FrontShot, ShotSpawn.position, ShotSpawn.rotation);
@@ -52,12 +54,13 @@ public class Car : MonoBehaviour {
             //SetAmmoText();
         }
         //Fires the shot backwards
-		if (Input.GetButton ("Fire3") && Time.time > nextFire && ammo > 0) {
-			nextFire = Time.time + fireRate;
-			Instantiate (BackShot, ShotSpawn2.position, ShotSpawn2.rotation);
-			--ammo;
+        if (Input.GetButton("Fire3") && Time.time > nextFire && ammo > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(BackShot, ShotSpawn2.position, ShotSpawn2.rotation);
+            --ammo;
             //SetAmmoText();
-		}
+        }
         //Destroys the player if Health is below 0
         /*if (health <= 0)
         {
@@ -65,13 +68,14 @@ public class Car : MonoBehaviour {
             GameOver();
         }*/
 
-		if ((Input.GetKeyDown(KeyCode.Space) || health <= 0 || gas <= 0) && playerCountStop == 0)
-		{
+        if ((Input.GetKeyDown(KeyCode.Space) || health <= 0 || gas <= 0) && playerCountStop == 0)
+        {
             ExitCar();
-		}
-        else
+        }
+        else if (gas > 0 && playerCountStop == 0)
         {
             gas -= Time.deltaTime;
+            Debug.Log(gas);
         }
     }
 
@@ -85,7 +89,7 @@ public class Car : MonoBehaviour {
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
         rb2d.velocity = movement * speed;
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -137,10 +141,10 @@ public class Car : MonoBehaviour {
     }*/
 
     //Displays the amount of ammo the player has
-   /* void SetAmmoText()
-    {
-        countText.text = "Ammo: " + ammo.ToString();
-    }*/
+    /* void SetAmmoText()
+     {
+         countText.text = "Ammo: " + ammo.ToString();
+     }*/
 
     //Checks to see if both the players are in the car
     public void CheckCar()
@@ -174,5 +178,17 @@ public class Car : MonoBehaviour {
         playerCountStop++;
         playersInCar = 0;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void AddGas()
+    {
+        gas += 10f;
+        Debug.Log(gas);
+    }
+
+    public void AddHealth()
+    {
+        health = health + 5;
+        Debug.Log(health);
     }
 }

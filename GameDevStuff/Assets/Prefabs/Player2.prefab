@@ -154,6 +154,8 @@ MonoBehaviour:
   cameraScript: {fileID: 0}
   gameManagerScript: {fileID: 114332369606004188, guid: 57bbcb1b86dc739428fd8f0423f93435,
     type: 2}
+  carScript: {fileID: 114000014017222462, guid: 6a0a04c1176bef34984b9ddc7b0d4670,
+    type: 2}
   speed: 10
   health: 10
 --- !u!212 &212000012004254722
