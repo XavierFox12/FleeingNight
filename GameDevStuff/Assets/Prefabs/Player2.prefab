@@ -207,6 +207,7 @@ MonoBehaviour:
   speed: 10
   health: 10
   animator: {fileID: 95086571049927580}
+  gunAnimator: {fileID: 95526423501244542}
 --- !u!212 &212000012004254722
 SpriteRenderer:
   m_ObjectHideFlags: 1
