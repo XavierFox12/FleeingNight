@@ -45874,7 +45874,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 19b07b5d920493d4aa822628d1534174, type: 3}
   m_Color: {r: 0.41176468, g: 0.41176468, b: 0.41176468, a: 0.803}
   m_FlipX: 0
@@ -95942,7 +95942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  gas: 30
+  gas: 45
   healthSlider: {fileID: 0}
   cameraScript: {fileID: 1226163002}
   countText: {fileID: 0}
