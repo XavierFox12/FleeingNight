@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011340938496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.480957, y: -6.244819, z: 0}
+  m_LocalPosition: {x: 43.009903, y: 8.289122, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 5}
   m_Children:
   - {fileID: 4123029990901120}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  shot: {fileID: 1000013402019174, guid: bae3168790cd2bc419168d465c91fe63, type: 2}
+  shot: {fileID: 1791453662500412, guid: 41d346df4be29a344b79f423715ca6ad, type: 2}
   shotSpawn: {fileID: 4123029990901120}
   healthSlider: {fileID: 0}
   winText: {fileID: 114582240425244410, guid: 08197c251879216459c6cf0c62e8d772, type: 2}
