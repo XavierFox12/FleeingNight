@@ -206,6 +206,7 @@ MonoBehaviour:
     type: 2}
   speed: 10
   health: 10
+  animator: {fileID: 95730826049848816}
 --- !u!212 &212000014081241188
 SpriteRenderer:
   m_ObjectHideFlags: 1

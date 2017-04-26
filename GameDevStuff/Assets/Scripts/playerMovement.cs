@@ -16,6 +16,7 @@ public class playerMovement : MonoBehaviour
     public Car carScript;                       // The car script that will be called if the player picks up scrap or gas
     public float speed = 10f;                   // Controls the speed of the player
     public int health = 10;                     // Controls the health of the player
+    public Animator animator;                   // Controls the animator for the player
     private string fire;                        // Determines if the player shooting is 1 or 2
     private string movementVertical;            // Allows the player to move vertically
     private string movementHorizontal;          // Allows the player to move horizontally
@@ -82,6 +83,63 @@ public class playerMovement : MonoBehaviour
             ammo += 10;
             --inventory;
             Debug.Log(ammo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && playerNumber == 2)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", true);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && playerNumber == 2)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", true);
+            animator.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && playerNumber == 2)
+        {
+            animator.SetBool("turnBack", true);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && playerNumber == 2)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", true);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && playerNumber == 1)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", true);
+        }
+        else if (Input.GetKeyDown(KeyCode.A) && playerNumber == 1)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", true);
+            animator.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && playerNumber == 1)
+        {
+            animator.SetBool("turnBack", true);
+            animator.SetBool("turnFront", false);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", false);
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && playerNumber == 1)
+        {
+            animator.SetBool("turnBack", false);
+            animator.SetBool("turnFront", true);
+            animator.SetBool("turnLeft", false);
+            animator.SetBool("turnRight", false);
         }
     }
 
