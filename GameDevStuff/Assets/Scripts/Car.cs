@@ -10,6 +10,7 @@ public class Car : MonoBehaviour
     public float gas;
     public Animator animator;
     public Slider healthSlider;
+    public Slider gasSlider;
     public cameraMovement cameraScript;
     public Text countText;
     public Text winOrLoseText;
@@ -91,6 +92,7 @@ public class Car : MonoBehaviour
         else if (gas > 0 && playerCountStop == 0)
         {
             gas -= Time.deltaTime;
+            gasSlider.value = gas;
             Debug.Log(gas);
         }
     }
@@ -210,12 +212,14 @@ public class Car : MonoBehaviour
     public void AddGas()
     {
         gas += 10f;
+        gasSlider.value = gas;
         Debug.Log(gas);
     }
 
     public void AddHealth()
     {
         health = health + 5;
+        healthSlider.value = health;
         Debug.Log(health);
     }
 }

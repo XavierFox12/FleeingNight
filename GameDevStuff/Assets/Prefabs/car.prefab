@@ -1148,8 +1148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 12
   gas: 45
-  animator: {fileID: 0}
-  healthSlider: {fileID: 0}
+  animator: {fileID: 95874865057410328}
+  healthSlider: {fileID: 114409112721700806, guid: a9a5062897440274d87cbf129e0068d0,
+    type: 2}
+  gasSlider: {fileID: 114562254105251344, guid: 1dc31e7b94d8f7b47be842b47c3a7827,
+    type: 2}
   cameraScript: {fileID: 0}
   countText: {fileID: 0}
   winOrLoseText: {fileID: 0}

@@ -228,7 +228,8 @@ MonoBehaviour:
   backShot: {fileID: 1012624449765882, guid: e48810ae81286994196863b77113d288, type: 2}
   shotSpawn: {fileID: 4065946687981338}
   shotSpawn2: {fileID: 4123029990901120}
-  healthSlider: {fileID: 0}
+  healthSlider: {fileID: 114843162247997844, guid: 26a7d5a8a25c6d44fb5ae365c4dde5c0,
+    type: 2}
   winText: {fileID: 114582240425244410, guid: 08197c251879216459c6cf0c62e8d772, type: 2}
   cameraScript: {fileID: 0}
   gameManagerScript: {fileID: 114332369606004188, guid: 57bbcb1b86dc739428fd8f0423f93435,
