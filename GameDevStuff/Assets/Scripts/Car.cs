@@ -21,6 +21,8 @@ public class Car : MonoBehaviour
     public GameObject Player2Prefab;
     public Transform ShotSpawn;
     public Transform ShotSpawn2;
+    public Transform ShotSpawn3;
+    public Transform ShotSpawn4;
     public Transform PlayerSpawn;
     public Transform PlayerSpawn2;
     //public SpriteRenderer playerRenderer1;
@@ -45,9 +47,22 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playersInCar);
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Time.time > nextFire && ammo > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(FrontShot, ShotSpawn3.position, ShotSpawn3.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && Time.time > nextFire && ammo > 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(FrontShot, ShotSpawn4.position, ShotSpawn4.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
         //Fires the shot forward
-        if (Input.GetButton("Fire1") && Time.time > nextFire && ammo > 0)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && Time.time > nextFire && ammo > 0)
         {
             nextFire = Time.time + fireRate;
             Instantiate(FrontShot, ShotSpawn.position, ShotSpawn.rotation);
