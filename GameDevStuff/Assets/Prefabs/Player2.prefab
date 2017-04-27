@@ -31,6 +31,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1331169392601422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4080065770103884}
+  m_Layer: 0
+  m_Name: Shot Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1784935829951822
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4180922857195516}
   m_Layer: 0
-  m_Name: Shot Spawn
+  m_Name: Shot Spawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,9 +85,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011664326278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.10749, y: -5.8889313, z: 0}
+  m_LocalPosition: {x: -13.309058, y: -11.415066, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 5}
   m_Children:
+  - {fileID: 4080065770103884}
   - {fileID: 4180922857195516}
   - {fileID: 4062897839827970}
   m_Father: {fileID: 0}
@@ -89,7 +105,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4000010669417658}
-  m_RootOrder: 1
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4080065770103884
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331169392601422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.36, y: 0, z: -0.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000010669417658}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4180922857195516
 Transform:
@@ -98,11 +127,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1909651106750696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: 0, z: -0.04}
+  m_LocalPosition: {x: -0.43, y: 0, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000010669417658}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50000012076866634
 Rigidbody2D:
@@ -196,7 +225,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 2
   shot: {fileID: 1611239238666284, guid: 463d30d38d475014c8a4eb151fc48f0a, type: 2}
-  shotSpawn: {fileID: 4180922857195516}
+  backShot: {fileID: 1012624449765882, guid: e48810ae81286994196863b77113d288, type: 2}
+  shotSpawn: {fileID: 4080065770103884}
+  shotSpawn2: {fileID: 4180922857195516}
   healthSlider: {fileID: 0}
   winText: {fileID: 114582240425244410, guid: 08197c251879216459c6cf0c62e8d772, type: 2}
   cameraScript: {fileID: 0}

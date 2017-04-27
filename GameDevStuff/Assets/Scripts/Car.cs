@@ -133,6 +133,7 @@ public class Car : MonoBehaviour
                 ExitCar();
             }
             healthSlider.value = health;
+            SceneManager.LoadScene("titleScreen");
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Finish"))

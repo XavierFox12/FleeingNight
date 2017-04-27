@@ -7,8 +7,10 @@ public class playerMovement : MonoBehaviour
 {
 
     public int playerNumber = 1;                // Determines what player this script belongs to
-    public GameObject shot;                     // The shot gameobject that allows the player to shoot
-    public Transform shotSpawn;                 // The shot spawn, which is where the shot will spawn from
+    public GameObject shot;                     // The shot gameobject that allows the player to shoot forward
+    public GameObject backShot;                 // The backShot gameobject that allows the player to shoot back
+    public Transform shotSpawn;                 // The shot spawn, which is where the shot will spawn from the front
+    public Transform shotSpawn2;                // The shot spawn, which is where the shot will spawn from the back
     public Slider healthSlider;                 // Controller for the players health
     public Text winText;                        // The text that displays "You Win" if the player reaches the end
     public cameraMovement cameraScript;         // The camera script that will keep its eye on the player
@@ -18,7 +20,6 @@ public class playerMovement : MonoBehaviour
     public int health = 10;                     // Controls the health of the player
     public Animator animator;                   // Controls the animator for the player movements
     public Animator gunAnimator;                // Controls the animator for the players guns
-    public CircleCollider2D doorCircle;
     private string fire;                        // Determines if the player shooting is 1 or 2
     private string movementVertical;            // Allows the player to move vertically
     private string movementHorizontal;          // Allows the player to move horizontally
@@ -58,10 +59,34 @@ public class playerMovement : MonoBehaviour
         movementInputHorizontal = Input.GetAxis(movementHorizontal);
         movementInputVertical = Input.GetAxis(movementVertical);
 
-        if (Input.GetButton(fire) && Time.time > nextFire && ammo > 0)
+        if (Input.GetKeyDown(KeyCode.H) && Time.time > nextFire && ammo > 0 && playerNumber == 1)
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G) && Time.time > nextFire && ammo > 0 && playerNumber == 1)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(backShot, shotSpawn2.position, shotSpawn.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Period) && Time.time > nextFire && ammo > 0 && playerNumber == 2)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            --ammo;
+            //SetAmmoText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Comma) && Time.time > nextFire && ammo > 0 && playerNumber == 2)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(backShot, shotSpawn2.position, shotSpawn.rotation);
             --ammo;
             //SetAmmoText();
         }
@@ -206,6 +231,7 @@ public class playerMovement : MonoBehaviour
             gameManagerScript.PlayerDeathCount();
             healthSlider.value = health;
             cameraScript.UnTrackPlayer(this.gameObject);
+            SceneManager.LoadScene("titleScreen");
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Finish"))
