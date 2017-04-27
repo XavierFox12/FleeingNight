@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour
     public int health = 10;                     // Controls the health of the player
     public Animator animator;                   // Controls the animator for the player movements
     public Animator gunAnimator;                // Controls the animator for the players guns
+    public CircleCollider2D doorCircle;
     private string fire;                        // Determines if the player shooting is 1 or 2
     private string movementVertical;            // Allows the player to move vertically
     private string movementHorizontal;          // Allows the player to move horizontally
@@ -199,13 +200,6 @@ public class playerMovement : MonoBehaviour
             --health;
             healthSlider.value = health;
         }
-        else if (other.gameObject.CompareTag("Door"))
-        {
-            //spriteR.enabled = false;
-            other.transform.parent.GetComponent<Car>().CheckCar();
-            cameraScript.UnTrackPlayer(this.gameObject);
-            Destroy(this.gameObject);
-        }
         else if (other.gameObject.CompareTag("Wall"))
         {
             health = 0;
@@ -220,7 +214,21 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    void YouWin()
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Door"))
+        {
+            //spriteR.enabled = false;
+            if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                other.transform.parent.GetComponent<Car>().CheckCar();
+                cameraScript.UnTrackPlayer(this.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+        void YouWin()
     {
         Debug.Log("You Win");
         SceneManager.LoadScene("titleScreen");

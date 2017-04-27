@@ -70,7 +70,7 @@ public class Car : MonoBehaviour
             //SetAmmoText();
         }
         //Fires the shot backwards
-        if (Input.GetButton("Fire3") && Time.time > nextFire && ammo > 0)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Time.time > nextFire && ammo > 0)
         {
             nextFire = Time.time + fireRate;
             Instantiate(BackShot, ShotSpawn2.position, ShotSpawn2.rotation);
