@@ -105,6 +105,11 @@ public class Car : MonoBehaviour
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
         rb2d.velocity = movement * speed;
+
+        animator.SetBool("movingForward", true);
+        animator.SetBool("movingBackward", false);
+        animator.SetBool("idle", false);
+        animator.SetBool("emptyIdle", false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -130,10 +135,10 @@ public class Car : MonoBehaviour
             health = 0;
             if (playerCountStop == 0)
             {
-                ExitCar();
+                //ExitCar();
+                SceneManager.LoadScene("titleScreen");
             }
             healthSlider.value = health;
-            SceneManager.LoadScene("titleScreen");
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Finish"))
@@ -195,6 +200,11 @@ public class Car : MonoBehaviour
         playerCountStop++;
         playersInCar = 0;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        animator.SetBool("movingForward", false);
+        animator.SetBool("movingBackward", false);
+        animator.SetBool("idle", false);
+        animator.SetBool("emptyIdle", true);
     }
 
     public void AddGas()
